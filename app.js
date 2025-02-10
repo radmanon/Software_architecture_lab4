@@ -13,6 +13,7 @@ const server = http.createServer((req, res)=>{
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
 
+    // this might not be neccessary but for make sure we are trying to make it closer to a real server file
     if (req.method === "OPTIONS") {
         res.writeHead(204);
         return res.end();
@@ -29,7 +30,6 @@ const server = http.createServer((req, res)=>{
                 res.writeHead(400, { "Content-Type": "application/json" });
                 return res.end(JSON.stringify({ message: "Invalid input: word and definition are required" }));
             }
-
 
             if (dictionary.some(entry => entry.word === data.word)) {
                 res.writeHead(409, {"Content-Type": "application/json"});
@@ -78,3 +78,8 @@ const server = http.createServer((req, res)=>{
 server.listen(2000, () => {
     console.log("Server is running on port 2000");
 });
+
+//**
+// this code developed by getting assistance from ChatGPT (https://chat.openai.com/) regarding 
+// the methods "find", "some", "push" in GET and PSOT.
+//  */
